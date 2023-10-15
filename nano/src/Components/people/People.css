@@ -1,0 +1,43 @@
+/* People.css */
+.page {
+  font-family: Arial, Verdana, sans-serif;
+  background: #070707;
+  color: white;
+  padding: 0;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+/* Add advanced styling for different sections of your page here */
+
+/* Example: Styling for the header */
+#header_wrapper {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+}
+
+#header_wrapper h1 {
+  font-size: 24px;
+}
+
+/* Example: Styling for people's images */
+.one_third img {
+  max-width: 100%;
+  height: auto;
+  border: 5px solid #fff;
+}
+
+/* Add more CSS rules for your components as needed */
+
+/* Example: Styling for links */
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

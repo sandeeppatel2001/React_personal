@@ -1,0 +1,22 @@
+/* Person.css */
+.person {
+  display: flex;
+  margin: 20px;
+}
+
+.image-wrapper {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.person-image {
+  max-width: 100%;
+  height: auto;
+  border: 5px solid #fff;
+}
+
+.person-details {
+  flex: 2;
+}
+
+/* Add any additional styling as needed */

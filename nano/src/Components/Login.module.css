@@ -1,0 +1,45 @@
+.login-overlay {
+  background: #ffffff;
+  border: 1px solid #ccc;
+  /* padding: 20px; */
+  width: 300px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.login-overlay h2 {
+  margin: 0;
+}
+
+.login-overlay label {
+  display: block;
+  /* margin-top: 10px; */
+}
+
+.login-overlay input {
+  width: 100%;
+  /* padding: 10px; */
+  /* margin-top: 5px; */
+}
+
+.login-overlay button {
+  width: 100%;
+  /* padding: 10px; */
+  /* margin-top: 20px; */
+  background: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.login-overlay button:hover {
+  background: #0056b3;
+}
+textarea {
+  background: none;
+  background-color: whitesmoke;
+  height: 5rem;
+  width: 50%;
+  font-weight: 800;
+  font-size: 150%;
+}
