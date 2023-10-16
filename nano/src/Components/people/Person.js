@@ -1,15 +1,16 @@
 import React from "react";
 import "./Person.css"; // Import your CSS file
-
-const Person = ({
-  name,
-  title,
-  email,
-  education,
-  research,
-  resumeLink,
-  imageSrc,
-}) => {
+import { useDispatch } from "react-redux";
+import { savedataaction } from "../../store";
+const Person = (props) => {
+  const dispatch = useDispatch();
+  const { name, title, email, education, research, resumeLink, imageSrc } =
+    props.data;
+  const key = props.index;
+  const del = () => {
+    console.log("delete.js runnig", key);
+    dispatch(savedataaction.delete(key));
+  };
   return (
     <div className="person">
       <div className="image-wrapper">
@@ -20,9 +21,23 @@ const Person = ({
         />
       </div>
       <div className="person-details">
-        <h4 className="people">{name}</h4>
+        <div style={{ display: "flex" }}>
+          <h1 className="people" style={{ paddingRight: "2%" }}>
+            {name}
+          </h1>
+          <h3
+            style={{
+              paddingTop: "1%",
+              textDecoration: "underline",
+              cursor: "pointer",
+            }}
+            onClick={del}
+          >
+            Delete
+          </h3>
+        </div>
         <i>{title}</i>
-        <p>{research}</p>
+
         <table>
           <tbody>
             <tr>
@@ -34,7 +49,21 @@ const Person = ({
               <td className="info_left">{education}</td>
             </tr>
             <tr>
-              <td>Current Research:</td>
+              <td></td>
+              <td className="info_left">{<hr></hr>}</td>
+            </tr>
+
+            <tr style={{ paddingTop: "200px" }}>
+              <td
+                style={{
+                  width: "20%",
+                }}
+              >
+                Current Research:
+              </td>
+              {/* <td>
+                <hr></hr>
+              </td> */}
               <td className="info_left">{research}</td>
             </tr>
             <tr>
