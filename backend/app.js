@@ -3,19 +3,20 @@ const app = express();
 const mongodb = require("mongodb");
 const cors = require("cors");
 app.use(cors());
+require("dotenv").config();
+
 app.use(express.json());
 let db;
 // import { getfun } from "./get";
 // const getfun = require("./get");
 async function connectToDatabase() {
   try {
-    const client = await mongodb.MongoClient.connect(
-      "mongodb+srv://sandeep:Tesla@cluster0.ytmo2xs.mongodb.net/?retryWrites=true&w=majority",
-      {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      }
-    );
+    const url = process.env.URL;
+
+    const client = await mongodb.MongoClient.connect(url, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
     db = client.db();
     console.log("Connected to MongoDB");
   } catch (err) {
@@ -127,7 +128,8 @@ app.get("/right", async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
-app.listen(3001, () => {
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
   console.log("Server is running on port 3001");
 });
 module.exports = {
