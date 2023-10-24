@@ -1,10 +1,11 @@
 // Define the submitDataToBackend function
 export const submitDataToBackend = async (formData, from, type) => {
   try {
-    console.log("sendreq.jsfile", JSON.stringify(formData));
+    console.log("sendreq.jsfile", JSON.stringify(formData), "from=", from);
     // Make an API request to send the formData to the backend
+    // http://localhost:3001/${type === "GET" ? from : "people"}
     const response = await fetch(
-      `http://localhost:3001/${type === "GET" ? from : "people"}`,
+      `https://first-ilgg.onrender.com/${type === "GET" ? from : "people"}`,
       {
         method: type, // Use POST for adding data
         body: type === "POST" ? JSON.stringify({ formData, from }) : null, // Convert your data to JSON
@@ -32,13 +33,17 @@ export const deletmain = async (key, from) => {
   console.log("delete.js runnig", key);
 
   try {
-    const response = await fetch("http://localhost:3001/deletepeople", {
-      method: "POST", // Use POST for adding data
-      body: JSON.stringify({ key, from }), // Convert your data to JSON
-      headers: {
-        "Content-Type": "application/json", // Set the content type
-      },
-    });
+    // http://localhost:3001/deletepeople
+    const response = await fetch(
+      "https://first-ilgg.onrender.com:10000/deletepeople",
+      {
+        method: "POST", // Use POST for adding data
+        body: JSON.stringify({ key, from }), // Convert your data to JSON
+        headers: {
+          "Content-Type": "application/json", // Set the content type
+        },
+      }
+    );
 
     if (response.ok) {
       console.log("deletesuc");

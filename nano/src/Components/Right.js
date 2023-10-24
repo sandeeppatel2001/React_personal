@@ -63,12 +63,6 @@ const Right = () => {
     Student's Symposium at Department of Materials Engineering, IISc.
     Congratulations!`,
     },
-    {
-      h: "Best Oral Presentation",
-      c: `Swanand has won the best oral presentation in the 34th Annual
-    Student's Symposium at Department of Materials Engineering, IISc.
-    Congratulations!`,
-    },
   ]);
   useEffect(() => {
     try {
@@ -131,7 +125,7 @@ const Right = () => {
 
         {Newdata.map((e, i) => {
           return (
-            <div>
+            <div key={i}>
               <div>
                 <div key={i} style={{ display: "flex" }}>
                   <DeleteIcon>{e.h}</DeleteIcon>
