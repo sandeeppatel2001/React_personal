@@ -5,7 +5,7 @@ export const submitDataToBackend = async (formData, from, type) => {
     // Make an API request to send the formData to the backend
     // http://localhost:3001/${type === "GET" ? from : "people"}
     const response = await fetch(
-      `https://first-ilgg.onrender.com/${type === "GET" ? from : "people"}`,
+      `https://second-hnyp.onrender.com/${type === "GET" ? from : "people"}`,
       {
         method: type, // Use POST for adding data
         body: type === "POST" ? JSON.stringify({ formData, from }) : null, // Convert your data to JSON
@@ -35,7 +35,7 @@ export const deletmain = async (key, from) => {
   try {
     // http://localhost:3001/deletepeople
     const response = await fetch(
-      "https://first-ilgg.onrender.com:10000/deletepeople",
+      "https://second-hnyp.onrender.com/deletepeople",
       {
         method: "POST", // Use POST for adding data
         body: JSON.stringify({ key, from }), // Convert your data to JSON

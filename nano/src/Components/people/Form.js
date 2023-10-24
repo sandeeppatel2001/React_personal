@@ -43,7 +43,7 @@ const Form = () => {
       //   "https://upload.wikimedia.org/wikipedia/en/4/47/Iron_Man_%28circa_2018%29.png",
     };
     dispatch(savedataaction.adddata(obj));
-    submitDataToBackend(obj, "POST");
+    submitDataToBackend(obj, "people", "POST");
     console.log("ffffffffffffff", obj);
   };
   return (
