@@ -26,7 +26,7 @@ const App = () => {
                 </Fragment>
               }
             ></Route>
-            <Route path="/people" exact element={<PeoplePage />}>
+            <Route path="/people" element={<PeoplePage />}>
               {/* <PeoplePage /> */}
             </Route>
             {/* <Route path="/products/:productId">
