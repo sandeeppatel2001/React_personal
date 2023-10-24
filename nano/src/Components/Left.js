@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import LoginOverlay from "./LoginOverlay";
-
+import { deletmain, submitDataToBackend } from "./people/sendreq";
 const LeftColumn = styled.div`
   flex: 1;
 
-  //   border: white solid 2px;
+  // border: white solid 2px;
 `;
 const Header = styled.h5`
   font-family: "Playfair Display", serif;
@@ -43,21 +43,38 @@ const researchcontent = [
 
 const Left = () => {
   const [Rcont, setRcont] = useState(researchcontent);
-  useEffect(() => {}, []);
-  const [Isshow, setIsshow] = useState(0);
+  useEffect(() => {
+    try {
+      const fetch = async () => {
+        const data = await submitDataToBackend("", "left", "GET");
+        // console.log(data);
+        let a = [];
+        data.forEach((element) => {
+          a.push(element.data);
+        });
+        setRcont(a);
+      };
+      fetch();
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
+  const [Isshow, setIsshow] = useState(false);
   const del = (index) => {
     console.log("del", index);
     const newcont = Rcont.filter((_, i) => i !== index);
     setRcont(newcont);
+    deletmain(index, "left");
   };
   const ladd = (event) => {
-    setIsshow(1);
+    setIsshow(true);
     console.log("pppppppppp");
   };
   const subdata = (data) => {
-    console.log("left.js  ", data);
+    console.log("left.js", data);
     setRcont([data, ...Rcont]);
-    setIsshow(0);
+    setIsshow(false);
+    submitDataToBackend({ data }, "left", "POST");
   };
   return (
     <LeftColumn>

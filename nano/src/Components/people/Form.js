@@ -1,27 +1,50 @@
 import { useDispatch } from "react-redux";
 import { savedataaction } from "../../store";
 import { havetoshwoaction } from "../../store";
+import { useState } from "react";
+import { submitDataToBackend } from "./sendreq";
 const Form = () => {
   const dispatch = useDispatch();
-  const takedata = (e) => {
+  const [formData, setFormData] = useState({
+    name: "",
+    member: "",
+    email: "",
+    des: "",
+    res: "",
+    url: "",
+    edu: "",
+    resumeurl: "",
+  });
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    // console.log("saaa", event.target, "name", name, "value", value);
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+
+    console.log("formdataf", formData);
+  };
+  const takedata = async (e) => {
     e.preventDefault();
     dispatch(havetoshwoaction.revrertfun());
     console.log(e.target);
-    dispatch(
-      savedataaction.adddata({
-        name: "Tonitttererter",
-        title: "NANO-MATERIALS LAB Members",
-        email: "sandeepkrpatel2002@gmail.com",
-        education:
-          "Ph.D. in Materials Engineering at IIT-Jammu and joined the Nano-materials lab in fall 2022",
-        research:
-          "Tony Stark has worn multiple different armors in his MCU appearances. For Iron Man, Stan Winston and his company built metal and rubber versions of the armors featured in the film,[70] while Iron Man comic book artist Adi Granov designed the Mark III with illustrator Phil Saunders.[71] Industrial Light & Magic (ILM) created the digital armors in the film,[72] with The Orphanage and The Embassy doing additional work. To help with animating the more refined suits, information was sometimes captured by having Downey wear only the helmet, sleeves and chest of the costume over a motion capture suit.",
+    const obj = {
+      id: "form",
+      name: formData.name,
+      title: formData.member,
+      email: formData.email,
+      education: formData.edu,
+      research: formData.res,
 
-        resumeLink: "https://cvowl.com/jammu/cv/builder",
-        imageSrc:
-          "https://upload.wikimedia.org/wikipedia/en/4/47/Iron_Man_%28circa_2018%29.png",
-      })
-    );
+      resumeLink: formData.resumeurl,
+      imageSrc: formData.url,
+      // imageSrc:
+      //   "https://upload.wikimedia.org/wikipedia/en/4/47/Iron_Man_%28circa_2018%29.png",
+    };
+    dispatch(savedataaction.adddata(obj));
+    submitDataToBackend(obj, "POST");
+    console.log("ffffffffffffff", obj);
   };
   return (
     <div>
@@ -33,40 +56,92 @@ const Form = () => {
             <div>
               <div>
                 <label style={{ paddingRight: "2%" }}>Name</label>
-                <input placeholder="Name"></input>
+                <input
+                  name="name"
+                  onChange={handleInputChange}
+                  placeholder="Name"
+                ></input>
               </div>
               <hr />
               <div>
                 <label style={{ paddingRight: "2%" }}>Member of</label>
-                <input placeholder="Member of" />
+                <input
+                  name="member"
+                  value={formData.member}
+                  onChange={handleInputChange}
+                  placeholder="Member of"
+                />
               </div>
               <hr />
-              <div>
+              {/* <div>
                 <label style={{ paddingRight: "2%" }}>Your Description</label>
-                <textarea placeholder="Description"> </textarea>
-              </div>
-              <hr />
+                <textarea
+                  name="des"
+                  value={formData.des}
+                  onChange={handleInputChange}
+                  placeholder="Description"
+                >
+                  {" "}
+                </textarea>
+              </div> */}
+              {/* <hr /> */}
               <div>
                 <label style={{ paddingRight: "2%" }}>Email</label>
-                <input type="email" placeholder="email"></input>
+                <input
+                  onChange={handleInputChange}
+                  type="email"
+                  placeholder="email"
+                  name="email"
+                  value={formData.email}
+                ></input>
               </div>
               <hr />
               <div>
                 <label style={{ paddingRight: "2%" }}>Education</label>
-                <textarea placeholder="Description"> </textarea>
+                <textarea
+                  onChange={handleInputChange}
+                  placeholder="edu-Description"
+                  name="edu"
+                  value={formData.edu}
+                >
+                  {" "}
+                </textarea>
               </div>
               <hr />
               <div>
                 <label style={{ paddingRight: "2%" }}>Current Research</label>
-                <textarea id="desc"> </textarea>
+                <textarea
+                  name="res"
+                  value={formData.res}
+                  onChange={handleInputChange}
+                  id="desc"
+                >
+                  {" "}
+                </textarea>
               </div>
               <hr />
               <div>
                 <label style={{ paddingRight: "2%" }}>Resume</label>
-                <input type="url" placeholder="Url"></input>
+                <input
+                  onChange={handleInputChange}
+                  type="url"
+                  placeholder="Url"
+                  name="resumeurl"
+                  value={formData.resumeurl}
+                ></input>
               </div>
               <hr />
-
+              <div>
+                <label style={{ paddingRight: "2%" }}>Image</label>
+                <input
+                  onChange={handleInputChange}
+                  type="url"
+                  placeholder="Image_Url"
+                  name="url"
+                  value={formData.url}
+                ></input>
+              </div>
+              <hr />
               <div>
                 <button onClick={(e) => takedata(e)}>Submit</button>
               </div>

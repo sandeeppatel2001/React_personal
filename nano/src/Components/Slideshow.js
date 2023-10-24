@@ -34,7 +34,7 @@ const slideImages = [
 
 const Slideshow = () => {
   return (
-    <div className="slide-container">
+    <div style={{ marginTop: "-17px" }} className="slide-container">
       <Slide>
         {slideImages.map((slideImage, index) => (
           <div key={index}>

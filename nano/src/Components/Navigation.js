@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import MainContent from "./MainContent";
 // Define your sexy font
+import { useLocation } from "react-router-dom";
 const sexyFont = "Playfair Display, serif";
 
 const NavbarWrapper = styled.nav`
@@ -10,6 +11,9 @@ const NavbarWrapper = styled.nav`
   justify-content: center;
   align-items: center;
   height: 80px;
+  position: sticky;
+  top: 0px;
+  z-index: 2;
 `;
 
 const NavList = styled.ul`
@@ -20,7 +24,7 @@ const NavList = styled.ul`
 `;
 
 const NavItem = styled.li`
-  margin: 0 15px;
+  margin: 0 35px;
 `;
 
 const NavLink = styled.a`
@@ -46,20 +50,21 @@ const Navbar = () => {
           <NavLink href="/people">PEOPLE</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="#">RESEARCH</NavLink>
+          <NavLink href="/research">RESEARCH</NavLink>
         </NavItem>
         <NavItem>
+          <NavLink href="/meal">REACT-MEAL</NavLink>
+        </NavItem>
+        {/* <NavItem>
           <NavLink href="#">FACILITIES</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="#">TEACHING</NavLink>
-        </NavItem>
-        <NavItem>
+        </NavItem> */}
+
+        {/* <NavItem>
           <NavLink href="#">PUBLICATIONS</NavLink>
         </NavItem>
         <NavItem>
           <NavLink href="#">GALLERY</NavLink>
-        </NavItem>
+        </NavItem> */}
       </NavList>
     </NavbarWrapper>
   );

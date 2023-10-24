@@ -23,7 +23,7 @@ const Inner = styled.div`
 const MainContent = () => {
   return (
     <ContentWrapper>
-      <Inner>
+      <Inner style={{ width: "100%", marginTop: "-35px" }}>
         <Left></Left>
         <Right></Right>
       </Inner>

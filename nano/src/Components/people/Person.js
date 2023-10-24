@@ -2,14 +2,16 @@ import React from "react";
 import "./Person.css"; // Import your CSS file
 import { useDispatch } from "react-redux";
 import { savedataaction } from "../../store";
+import { deletmain } from "./sendreq";
 const Person = (props) => {
   const dispatch = useDispatch();
   const { name, title, email, education, research, resumeLink, imageSrc } =
     props.data;
   const key = props.index;
-  const del = () => {
+  const del = async () => {
     console.log("delete.js runnig", key);
     dispatch(savedataaction.delete(key));
+    deletmain(key, "people");
   };
   return (
     <div className="person">
@@ -22,7 +24,10 @@ const Person = (props) => {
       </div>
       <div className="person-details">
         <div style={{ display: "flex" }}>
-          <h1 className="people" style={{ paddingRight: "2%" }}>
+          <h1
+            className="people"
+            style={{ paddingRight: "2%", color: "#00ffff" }}
+          >
             {name}
           </h1>
           <h3
@@ -30,19 +35,22 @@ const Person = (props) => {
               paddingTop: "1%",
               textDecoration: "underline",
               cursor: "pointer",
+              color: "#00ffff",
             }}
             onClick={del}
           >
             Delete
           </h3>
         </div>
-        <i>{title}</i>
+        <i style={{ color: "#ff69b4" }}>{title}</i>
 
         <table>
           <tbody>
             <tr>
               <td>Email:</td>
-              <td className="info_left">{email}</td>
+              <td className="info_left" style={{ color: "red" }}>
+                {email}
+              </td>
             </tr>
             <tr>
               <td>Education:</td>

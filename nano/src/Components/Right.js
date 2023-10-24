@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import Newsinput from "./Newsinput";
+import { deletmain, submitDataToBackend } from "./people/sendreq";
 const RightColumn = styled.div`
   flex: 1;
   padding: 3%;
-
+  float: "right";
   background-color: black; /* Background color */
   color: white; /* Text color */
   // overflow-y: scroll;
@@ -62,7 +63,34 @@ const Right = () => {
     Student's Symposium at Department of Materials Engineering, IISc.
     Congratulations!`,
     },
+    {
+      h: "Best Oral Presentation",
+      c: `Swanand has won the best oral presentation in the 34th Annual
+    Student's Symposium at Department of Materials Engineering, IISc.
+    Congratulations!`,
+    },
   ]);
+  useEffect(() => {
+    try {
+      const fetch = async () => {
+        const data = await submitDataToBackend("", "right", "GET");
+        console.log("xxxxxxxxxxxxxxxxx", data);
+        let a = [];
+        data.forEach((element) => {
+          console.log(element);
+          a.push({
+            h: element.h,
+            c: element.c,
+          });
+        });
+        console.log(a);
+        setNewdata(a);
+      };
+      fetch();
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
   const Radd = (event) => {
     setIsshow(0);
     console.log("pppppppppp");
@@ -71,18 +99,27 @@ const Right = () => {
     console.log("left.js  ", data);
     setNewdata([{ h: data[0], c: data[1] }, ...Newdata]);
     setIsshow(1);
+    submitDataToBackend({ h: data[0], c: data[1] }, "right", "POST");
   };
   const del = (index) => {
     console.log("right.js--delfun", index);
     const updata = Newdata.filter((_, i) => i !== index);
     setNewdata(updata);
+    deletmain(index, "right");
     console.log(updata);
   };
   return (
     <RightColumn>
       <div style={{ display: "flex" }}>
         <Header>News</Header>
-        <Header style={{ paddingLeft: "7%" }} onClick={Radd}>
+        <Header
+          style={{
+            paddingLeft: "7%",
+            cursor: "pointer",
+            pointerEvents: "painted",
+          }}
+          onClick={Radd}
+        >
           Add
         </Header>
       </div>
@@ -95,18 +132,20 @@ const Right = () => {
         {Newdata.map((e, i) => {
           return (
             <div>
-              <div style={{ display: "flex" }}>
-                <DeleteIcon>{e.h}</DeleteIcon>
-                <DeleteIcon
-                  key={i}
-                  onClick={() => {
-                    del(i);
-                  }}
-                >
-                  🗑
-                </DeleteIcon>
+              <div>
+                <div key={i} style={{ display: "flex" }}>
+                  <DeleteIcon>{e.h}</DeleteIcon>
+                  <DeleteIcon
+                    key={i}
+                    onClick={() => {
+                      del(i);
+                    }}
+                  >
+                    🗑
+                  </DeleteIcon>
+                </div>
+                <NewsContent>{e.c}</NewsContent>
               </div>
-              <NewsContent>{e.c}</NewsContent>
             </div>
           );
         })}
