@@ -79,7 +79,7 @@ const Left = () => {
   return (
     <LeftColumn>
       <Header>Research Interests</Header>
-      <DeleteIcon onClick={ladd}>Add</DeleteIcon>
+      <DeleteIcon onClick={ladd}>Add➕</DeleteIcon>
       {/* <DeleteIcon>Delete</DeleteIcon> */}
       {Isshow && <LoginOverlay item={subdata} />}
       <div style={{ paddingTop: "4%" }}>

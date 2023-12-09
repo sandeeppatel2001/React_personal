@@ -22,7 +22,7 @@ const Form = () => {
       ...formData,
       [name]: value,
     });
-
+    
     console.log("formdataf", formData);
   };
   const takedata = async (e) => {

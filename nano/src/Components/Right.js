@@ -114,7 +114,7 @@ const Right = () => {
           }}
           onClick={Radd}
         >
-          Add
+          Add➕
         </Header>
       </div>
       <hr style={{ marginTop: "-5%" }}></hr>

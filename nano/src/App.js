@@ -19,6 +19,7 @@ const App = () => {
           <Routes>
             <Route
               path="/"
+              exact
               element={
                 <Fragment>
                   <Slideshow />
