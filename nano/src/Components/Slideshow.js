@@ -23,11 +23,11 @@ const slideImages = [
     caption: "Slide 3",
   },
   {
-    url: "https://images.unsplash.com/photo-1636953056323-9c09fdd74fa6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE0fHx8ZW58MHx8fHx8&w=1000&q=80",
+    url: "https://4kwallpapers.com/images/walls/thumbs_2t/13535.jpg",
     caption: "Slide 1",
   },
   {
-    url: "https://as2.ftcdn.net/v2/jpg/00/79/49/27/1000_F_79492745_hNI8HP9Iqb4HscpJRIdpIDLnAsmEtYYR.jpg",
+    url: "https://e0.pxfuel.com/wallpapers/693/992/desktop-wallpaper-cool-anime-top-best-of-cool-anime-really-cool-anime.jpg",
     caption: "Slide 2",
   },
 ];

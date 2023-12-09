@@ -49,10 +49,14 @@ const Left = () => {
         const data = await submitDataToBackend("", "left", "GET");
         // console.log(data);
         let a = [];
-        data.forEach((element) => {
-          a.push(element.data);
-        });
-        setRcont(a);
+        if (data) {
+          data.forEach((element) => {
+            a.push(element.data);
+          });
+          setRcont(a);
+        } else {
+          console.log("from left.js file= not found any data");
+        }
       };
       fetch();
     } catch (err) {
